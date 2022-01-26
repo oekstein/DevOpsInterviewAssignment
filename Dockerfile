@@ -2,7 +2,7 @@ FROM python:3.7-alpine
 
 COPY requirements.txt .
 
-RUN apt-get update && apt-get -y install gcc
+RUN apk update && apk add -y install build-base
 
 RUN pip install -r requirements.txt
 
