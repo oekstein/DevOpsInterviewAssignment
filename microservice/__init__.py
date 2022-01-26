@@ -1,0 +1,1 @@
+from microservice.service import ServiceClass

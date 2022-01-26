@@ -7,3 +7,7 @@ class TestServiceClass(unittest.TestCase):
         sc = ServiceClass(2)
         result = sc.one_or_zero()
         self.assertEqual(0, result)
+
+
+if __name__ == '__main__':
+    unittest.main()

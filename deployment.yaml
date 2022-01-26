@@ -16,4 +16,7 @@ spec:
     spec:
       containers:
       - name: microservice
-        image: microservice:latest
+        image: erzez/bitdem:10
+        env:
+          - name: BITDAM
+            value: "10"

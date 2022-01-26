@@ -18,21 +18,24 @@ pipeline {
         stage('run tests') {
             steps {
                 script {
-                    sh 'echo run tests'
+                    sh 'python -m unittest -v microservice/tests/test_service.py'
                 }
             }
         }
         stage('build and push image') {
             steps {
                 script {
-                    sh 'build and push image to hub'
+                    sh """
+                    docker build -t erzez/bitdam:${BUILD_NUMBER} .
+                    docker push erzez/bitdam:${BUILD_NUMBER}
+                    """
                 }
             }
         }
         stage('deploy image') {
             steps {
                 script {
-                    sh 'build docker image'
+                    sh 'kubectl apply -f deployment.yaml'
                 }
             }
         }

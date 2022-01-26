@@ -1,5 +1,5 @@
 import os
-from microservice.service import ServiceClass
+from service import ServiceClass
 import time
 
 
@@ -11,7 +11,6 @@ def main():
     while True:
         print(sc.one_or_zero())
         time.sleep(0.1)
-
 
 
 if __name__ == "__main__":

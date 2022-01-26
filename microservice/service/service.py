@@ -1,7 +1,6 @@
 from numpy.random import Generator, PCG64
 
 
-
 class ServiceClass(object):
     def __init__(self, number):
         self.number = number
