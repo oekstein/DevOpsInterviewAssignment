@@ -2,7 +2,9 @@ FROM python:3.7-alpine
 
 COPY requirements.txt .
 
-RUN python -m pip install --upgrade pip && pip install -r requirements.txt
+RUN apt-get update && apt-get -y install gcc
+
+RUN pip install -r requirements.txt
 
 RUN python -m virtualenv venv
 
