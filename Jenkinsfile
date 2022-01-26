@@ -11,7 +11,7 @@ pipeline {
         stage('Pull Code') {
             steps {
                 script {
-                    sh 'echo pull code'
+                    sh 'checkout scm'
                 }
             }
         }
