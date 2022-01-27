@@ -19,8 +19,8 @@ pipeline {
             steps {
                 script {
                     sh """
-                    sudo apt update
-                    sudo apt install -y python3-pip
+                    apt update
+                    apt install -y python3-pip
                     pip3 install virtualenv unittest
                     python -m unittest -v microservice/tests/test_service.py
                     """
