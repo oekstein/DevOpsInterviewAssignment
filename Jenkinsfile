@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         registry = "oekstein/DevOpsInterviewAssignment"
-        registryCredential = 'docker_hub'
+        DOCKER_CRED = credentials('dockerhub')
     }
     options {
         buildDiscarder(logRotator(numToKeepStr: '20', daysToKeepStr: '5' ))
@@ -27,6 +27,7 @@ pipeline {
                 script {
                     sh """
                     docker build -t erzez/bitdam:${BUILD_NUMBER} .
+                    docker login --username $DOCKER_CRED_USR --password $DOCKER_CRED_PSW
                     docker push erzez/bitdam:${BUILD_NUMBER}
                     """
                 }
