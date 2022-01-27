@@ -18,12 +18,10 @@ pipeline {
         stage('run tests') {
             steps {
                 script {
-                    sh """
-                    apt update
-                    apt install -y python3-pip
-                    pip3 install virtualenv unittest
-                    python -m unittest -v microservice/tests/test_service.py
-                    """
+                    sh "sudo apt-get update"
+                    sh "sudo apt-get install -y python3-pip"
+                    sh "pip3 install virtualenv unittest"
+                    sh "python -m unittest -v microservice/tests/test_service.py"
                 }
             }
         }
