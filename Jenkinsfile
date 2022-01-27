@@ -18,7 +18,7 @@ pipeline {
         stage('run tests') {
             steps {
                 script {
-                    sh "python3 -m unittest -v test_service.py"
+                    sh "python3 -m unittest test_service.py"
                 }
             }
         }
