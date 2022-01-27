@@ -1,5 +1,5 @@
 import os
-from service import ServiceClass
+from microservice.service import ServiceClass
 import time
 
 

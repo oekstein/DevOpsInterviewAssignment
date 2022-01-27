@@ -10,4 +10,4 @@ RUN python -m virtualenv venv
 
 COPY . .
 
-CMD ["python", "microservice/main.py"]
+CMD ["python3", "microservice/main.py"]

@@ -1,8 +1,7 @@
 pipeline {
     agent any
     environment {
-        registry = "oekstein/DevOpsInterviewAssignment"
-        registryCredential = 'docker_hub'
+        DOCKER_CRED = credentials('dockerhub')
     }
     options {
         buildDiscarder(logRotator(numToKeepStr: '20', daysToKeepStr: '5' ))
@@ -15,15 +14,10 @@ pipeline {
                 }
             }
         }
-        stage('run tests') {
+        stage('run unittests') {
             steps {
                 script {
-                    sh """
-                    apk add --update --no-cache python3 && ln -sf python3 /usr/bin/python
-                    python3 -m ensurepip
-                    pip3 install --no-cache --upgrade pip setuptools virtualenv unittest
-                    python -m unittest -v microservice/tests/test_service.py
-                    """
+                    sh "python3 -m unittest microservice/tests/test_service.py"
                 }
             }
         }
@@ -31,8 +25,9 @@ pipeline {
             steps {
                 script {
                     sh """
-                    docker build -t erzez/bitdam:${BUILD_NUMBER} .
-                    docker push erzez/bitdam:${BUILD_NUMBER}
+                    docker build -t erzez/bitdam1:${BUILD_NUMBER} .
+                    docker login --username $DOCKER_CRED_USR --password $DOCKER_CRED_PSW
+                    docker push erzez/bitdam1:${BUILD_NUMBER}
                     """
                 }
             }
@@ -40,7 +35,13 @@ pipeline {
         stage('deploy image') {
             steps {
                 script {
-                    sh 'kubectl apply -f deployment.yaml'
+                    withCredentials([file(credentialsId: 'kubeconfig', variable: 'config')]) {
+                        sh """
+                        export KUBECONFIG=\${config}
+                        sed 's/@VERSION/${BUILD_NUMBER}/g' deployment.yaml > deploy.yaml
+                        kubectl apply -f deploy.yaml
+                        """
+                    }
                 }
             }
         }
