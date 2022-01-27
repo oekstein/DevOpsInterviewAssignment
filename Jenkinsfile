@@ -1,5 +1,5 @@
 pipeline {
-    agent pyhton
+    agent any
     environment {
         registry = "oekstein/DevOpsInterviewAssignment"
         registryCredential = 'docker_hub'
