@@ -19,9 +19,9 @@ pipeline {
             steps {
                 script {
                     sh """
-                    apk add --update --no-cache python3 && ln -sf python3 /usr/bin/python
-                    python3 -m ensurepip
-                    pip3 install --no-cache --upgrade pip setuptools virtualenv unittest
+                    sudo apt update
+                    sudo apt install -y python3-pip
+                    pip3 install virtualenv unittest
                     python -m unittest -v microservice/tests/test_service.py
                     """
                 }
