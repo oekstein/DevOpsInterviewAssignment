@@ -35,9 +35,7 @@ pipeline {
         stage('deploy image') {
             steps {
                 script {
-                    withKubeConfig([credentialsId: 'jenkins-k8s', serverUrl: 'https://kubernetes.default']){
-                        sh 'sudo kubectl get pods --namespace=all-namespaces'
-                    }
+                    kubernetesDeploy(configs: "hellodocker.yml", kubeconfigId: "kubeconfig")
                 }
             }
         }
