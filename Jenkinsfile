@@ -36,7 +36,7 @@ pipeline {
             steps {
                 script {
                         sh """
-                        kubectl get pods --namespace=all-namespaces
+                        sudo kubectl config get-contexts
                         """
                 }
             }
