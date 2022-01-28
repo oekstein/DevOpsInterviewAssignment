@@ -35,7 +35,10 @@ pipeline {
         stage('deploy image') {
             steps {
                 script {
-                    kubernetesDeploy(configs: "deployment.yml", kubeconfigId: "kube_config")
+                    sh """
+                    sudo kubectl version
+                    sudo kubectl get po --namespace=all-namespaces
+                    """
                 }
             }
         }
