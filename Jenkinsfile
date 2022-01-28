@@ -35,7 +35,12 @@ pipeline {
         stage('deploy image') {
             steps {
                 script {
-                        sh "sudo kubectl apply -f deployment.yml"
+                    withCredentials([file(credentialsId: 'kubeconfig', variable: 'config')]) {
+                        sh """
+                        export KUBECONFIG=\${config}
+                        kubectl get pods --namespace=all-namespaces
+                        """
+                    }
                 }
             }
         }
