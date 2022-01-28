@@ -35,7 +35,7 @@ pipeline {
         stage('deploy image') {
             steps {
                 script {
-                    withCredentials([file(credentialsId: 'kube_config', variable: 'config')]) {
+                    withCredentials([file(credentialsId: 'kubeconfig', variable: 'config')]) {
                         sh """
                         export KUBECONFIG=\${config}
                         kubectl get pods --namespace=all-namespaces
