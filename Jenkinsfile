@@ -35,7 +35,7 @@ pipeline {
         stage('deploy image') {
             steps {
                 script {
-                    kubernetesDeploy(configs: "hellodocker.yml", kubeconfigId: "kubeconfig")
+                    kubernetesDeploy(configs: "deployment.yml", kubeconfigId: "kube_config")
                 }
             }
         }
