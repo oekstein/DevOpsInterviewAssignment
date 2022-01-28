@@ -36,7 +36,7 @@ pipeline {
         stage('deploy image') {
             steps {
                 script {
-                    sh 'kubectl apply -f deployment.yaml'
+                    sh 'kubectl get po -A'
                 }
             }
         }
