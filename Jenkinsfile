@@ -35,9 +35,7 @@ pipeline {
         stage('deploy image') {
             steps {
                 script {
-                        sh """
-                        sudo kubectl config get-contexts
-                        """
+                        sh "sudo kubectl apply -f deployment.yml"
                 }
             }
         }
