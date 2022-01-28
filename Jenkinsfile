@@ -1,7 +1,6 @@
 pipeline {
     agent any
     environment {
-        registry = "oekstein/DevOpsInterviewAssignment"
         DOCKER_CRED = credentials('dockerhub')
     }
     options {
@@ -36,7 +35,7 @@ pipeline {
         stage('deploy image') {
             steps {
                 script {
-                    sh 'kubectl get po -A'
+                    sh 'kubectl get po ---all-namespaces'
                 }
             }
         }
