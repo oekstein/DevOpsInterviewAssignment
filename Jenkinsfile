@@ -35,10 +35,12 @@ pipeline {
         stage('deploy image') {
             steps {
                 script {
-                    sh """
-                    sudo kubectl version
-                    sudo kubectl get po --namespace=all-namespaces
-                    """
+                    withCredentials([file(credentialsId: 'kubeconfig', variable: 'config')]) {
+                        sh """
+                        export KUBECONFIG=\${config}
+                        kubectl get po --namespace=all-namespaces
+                        """
+                    }
                 }
             }
         }
