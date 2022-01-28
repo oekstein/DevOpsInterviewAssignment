@@ -35,7 +35,7 @@ pipeline {
         stage('deploy image') {
             steps {
                 script {
-                    sh 'kubectl get pods --namespace=all-namespaces'
+                    sh 'sudo kubectl get pods --namespace=all-namespaces'
                 }
             }
         }
