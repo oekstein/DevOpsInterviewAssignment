@@ -25,9 +25,9 @@ pipeline {
             steps {
                 script {
                     sh """
-                    docker build -t erzez/bitdam:${BUILD_NUMBER} .
+                    docker build -t erzez/bitdam1:${BUILD_NUMBER} .
                     docker login --username $DOCKER_CRED_USR --password $DOCKER_CRED_PSW
-                    docker push erzez/bitdam:${BUILD_NUMBER}
+                    docker push erzez/bitdam1:${BUILD_NUMBER}
                     """
                 }
             }
