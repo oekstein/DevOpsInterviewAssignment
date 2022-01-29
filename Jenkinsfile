@@ -14,7 +14,7 @@ pipeline {
                 }
             }
         }
-        stage('run unittests') {
+        stage('run tests') {
             steps {
                 script {
                     sh "python3 -m unittest microservice/tests/test_service.py"
