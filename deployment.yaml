@@ -19,4 +19,4 @@ spec:
         image: erzez/bitdam1:@VERSION
         env:
           - name: BITDAM
-            value: "11"
+            value: "10"
