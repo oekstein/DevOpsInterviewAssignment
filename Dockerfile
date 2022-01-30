@@ -6,7 +6,9 @@ COPY requirements.txt .
 
 RUN pip3 install virtualenv
 
+ENV VIRTUAL_ENV=./venv
 RUN python3 -m virtualenv venv
+ENV PATH=”$VIRTUAL_ENV/bin:$PATH”
 
 RUN pip3 install -r requirements.txt
 
