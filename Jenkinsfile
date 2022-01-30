@@ -19,7 +19,7 @@ pipeline {
         stage('run unittests') {
             steps {
                 script {
-                    sh "sudo apt-get install libmagic1"
+                    sh "sudo apt-get install libmagic1 -y"
                     env.VIRTUAL_ENV="./venv"
                     sh "python3 -m virtualenv venv"
                     env.PATH="$VIRTUAL_ENV/bin:$PATH"
