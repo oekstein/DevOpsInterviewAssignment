@@ -19,7 +19,11 @@ pipeline {
         stage('run unittests') {
             steps {
                 script {
-                    sh "python3 -m unittest microservice/tests/test_service.py"
+                    sh """
+                    python3 -m virtualenv venv
+                    pip3 install -r requirements.txt
+                    python3 -m unittest microservice/tests/test_service.py
+                    """
                 }
             }
         }

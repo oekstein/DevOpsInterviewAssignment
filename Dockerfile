@@ -4,9 +4,9 @@ RUN apk update && apk add make build-base
 
 COPY requirements.txt .
 
-RUN pip install -r requirements.txt
+RUN python3 -m virtualenv venv
 
-RUN python -m virtualenv venv
+RUN pip3 install -r requirements.txt
 
 COPY . .
 
