@@ -41,7 +41,6 @@ pipeline {
                         sh """
                         export KUBECONFIG=\${config}
                         kubectl set image deployment/microservice-deployment microservice=erzez/bitdam1:${BUILD_NUMBER}
-                        kubectl rollout restart deployment microservice-deployment
                         """
                     }
                 }
