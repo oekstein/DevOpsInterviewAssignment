@@ -1,5 +1,5 @@
 pipeline {
-    agent jnlp
+    agent { label 'jnlp' }
     environment {
         DOCKER_CRED = credentials('dockerhub')
     }
