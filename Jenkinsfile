@@ -20,8 +20,9 @@ pipeline {
             steps {
                 script {
                     sh """
-                    pip3 install virtualenv
+                    export VIRTUAL_ENV=./venv
                     python3 -m virtualenv venv
+                    export PATH=”$VIRTUAL_ENV/bin:$PATH”
                     pip3 install -r requirements.txt
                     python3 -m unittest microservice/tests/test_service.py
                     """
