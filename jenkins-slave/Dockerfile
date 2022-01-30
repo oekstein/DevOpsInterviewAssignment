@@ -1,12 +1,9 @@
 FROM openjdk:8-jdk
 
-RUN apt-get update -y && apt-get install curl sudo python3.6 python3-pip -y
+RUN apt-get update -y && apt-get install curl sudo python3.6 python3-pip python3-virtualenv -y
 
 #install kubectl
 COPY --from=lachlanevenson/k8s-kubectl:v1.21.9 /usr/local/bin/kubectl /usr/local/bin/kubectl
-
-RUN pip3 install virtualenv
-
 
 #Install docker
 RUN curl -sSL https://get.docker.com/ | sh
