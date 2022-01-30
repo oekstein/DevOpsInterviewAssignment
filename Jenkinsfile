@@ -20,6 +20,7 @@ pipeline {
             steps {
                 script {
                     sh """
+                    pip3 install virtualenv
                     python3 -m virtualenv venv
                     pip3 install -r requirements.txt
                     python3 -m unittest microservice/tests/test_service.py
