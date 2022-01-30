@@ -1,4 +1,4 @@
-from numpy.random import Generator, PCG64, magic
+from numpy.random import Generator, PCG64
 
 
 class ServiceClass(object):
