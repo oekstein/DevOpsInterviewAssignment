@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent jnlp
     environment {
         DOCKER_CRED = credentials('dockerhub')
     }
@@ -38,8 +38,8 @@ pipeline {
                     withCredentials([file(credentialsId: 'kubeconfig', variable: 'config')]) {
                         sh """
                         export KUBECONFIG=\${config}
-                        sed 's/@VERSION/${BUILD_NUMBER}/g' deployment.yaml > deploy.yaml
-                        kubectl apply -f deploy.yaml
+                        kubectl set image deployment/microservice-deployment microservice=bitdam1:${BUILD_NUMBER}
+                        kubectl rollout restart deployment microservice-deployment
                         """
                     }
                 }
