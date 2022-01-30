@@ -2,4 +2,3 @@ numpy
 virtualenv
 pytest
 python-magic
-libmagic1

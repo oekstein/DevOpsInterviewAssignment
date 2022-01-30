@@ -1,6 +1,6 @@
 FROM python:3.7-alpine
 
-RUN apk update && apk add make build-base
+RUN apk update && apk add make build-base libmagic
 
 COPY requirements.txt .
 
